@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en-IN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Indian Tools Hub - 18+ Fast Online Tools</title>
+    <meta name="description" content="Ultra-fast daily tools for Indians. Age Calculator, GST, SIP, Image Compressor, Image to PDF. Simple, clean, and 1-click solutions.">
+    <meta name="keywords" content="Indian tools, age calculator, gst calculator, sip calculator, image tools, pdf tools, online tools">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#2563eb">
+    
+    <!-- Dynamic Canonical URL -->
+    <link rel="canonical" href="https://indiantoolshub.com/" id="canonical-link">
+
+    <!-- Open Graph Data -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Indian Tools Hub">
+    <meta property="og:title" content="Indian Tools Hub - Fast Tools">
+    <meta property="og:description" content="Calculate Age, GST, SIP, BMI and more instantly.">
+    <meta property="og:image" content="https://via.placeholder.com/1200x630.png?text=Indian+Tools">
+
+    <!-- Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <!-- PDF Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+    <!-- Tailwind Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'], display: ['Poppins', 'sans-serif'] },
+                    colors: { primary: '#2563eb', primaryDark: '#1d4ed8', bgLight: '#f8f9fa' },
+                    animation: { 'slide-up': 'slideUp 0.4s ease-out forwards', 'pop-in': 'popIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards' },
+                    keyframes: {
+                        slideUp: { '0%': { opacity: '0', transform: 'translateY(15px)' }, '100%': { opacity: '1', transform: 'translateY(0)' } },
+                        popIn: { '0%': { opacity: '0', transform: 'scale(0.95)' }, '100%': { opacity: '1', transform: 'scale(1)' } }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background-color: #f8f9fa; color: #1f2937; -webkit-tap-highlight-color: transparent; }
+        .tool-input { transition: all 0.2s; border: 1px solid #e5e7eb; font-size: 16px; }
+        .tool-input:focus { border-color: #2563eb; outline: none; box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1); }
+        .btn-press:active { transform: scale(0.97); }
+        .hide-scroll::-webkit-scrollbar { display: none; }
+        .hide-scroll { -ms-overflow-style: none; scrollbar-width: none; }
+        .active-pill { background-color: #2563eb; color: white; border-color: #2563eb; box-shadow: 0 4px 6px -1px rgba(37, 99, 235, 0.3); }
+        .inactive-pill { background-color: white; color: #4b5563; border-color: #e5e7eb; }
+        .ad-slot { background: #f1f5f9; border: 1px dashed #cbd5e1; color: #94a3b8; text-align: center; padding: 12px; border-radius: 12px; margin: 20px 0; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; }
+        @keyframes float { 0% { transform: translateY(0px); } 50% { transform: translateY(-5px); } 100% { transform: translateY(0px); } }
+        .animate-float { animation: float 3s ease-in-out infinite; }
+        
+        .prose h2 { font-size: 1.25rem; font-weight: 700; color: #111827; margin-top: 1.5rem; margin-bottom: 0.75rem; font-family: 'Poppins', sans-serif; }
+        .prose p { margin-bottom: 1rem; line-height: 1.6; color: #4b5563; }
+        .prose ul { list-style-type: disc; padding-left: 1.5rem; margin-bottom: 1rem; color: #4b5563; }
+        .prose li { margin-bottom: 0.5rem; }
+        .prose a { color: #2563eb; text-decoration: underline; }
+    </style>
+
+    <!-- Schema -->
+    <script type="application/ld+json" id="seo-schema"></script>
+</head>
+<body class="flex flex-col min-h-screen">
+
+    <!-- Navigation -->
+    <nav class="bg-white/90 backdrop-blur-md border-b sticky top-0 z-50">
+        <div class="max-w-3xl mx-auto px-4 h-16 flex items-center justify-between">
+            <a href="/" onclick="handleNav(event, 'home')" class="flex items-center gap-2 font-bold text-xl text-gray-800 font-display group">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" class="group-hover:animate-bounce">
+                    <path d="M13 2L3 14H12L11 22L21 10H12L13 2Z" fill="#2563eb" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span>Indian<span class="text-primary">Tools</span></span>
+            </a>
+            <div class="hidden sm:flex gap-1 bg-gray-100 p-1 rounded-full">
+                <button onclick="handleNav(event, 'home')" class="px-3 py-1 text-sm font-medium rounded-full hover:bg-white transition">All</button>
+                <button onclick="handleNav(event, 'calc')" class="px-3 py-1 text-sm font-medium rounded-full hover:bg-white transition">Calc</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main App Container -->
+    <main id="app-container" class="flex-grow max-w-3xl mx-auto w-full px-4 py-6 min-h-[80vh]"></main>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t mt-auto">
+        <div class="max-w-3xl mx-auto px-4 py-8 text-center text-gray-500 text-sm">
+            <div class="flex justify-center gap-6 mb-4 font-medium text-gray-600">
+                <a href="?page=about" onclick="event.preventDefault(); openPage('about')" class="hover:text-primary transition">About Us</a>
+                <a href="?page=privacy" onclick="event.preventDefault(); openPage('privacy')" class="hover:text-primary transition">Privacy Policy</a>
+                <a href="?page=contact" onclick="event.preventDefault(); openPage('contact')" class="hover:text-primary transition">Contact</a>
+            </div>
+            <p class="mb-4 text-xs">&copy; 2025 Indian Tools Hub. Made with ❤️ for India.</p>
+        </div>
+    </footer>
+
+    <!-- NoScript Fallback -->
+    <noscript>
+        <div class="p-4">
+            <h1>Indian Tools Hub</h1>
+            <ul>
+                <li><a href="?tool=age-calculator">Age Calculator</a></li>
+                <li><a href="?tool=gst-calculator">GST Calculator</a></li>
+                <li><a href="?tool=img-compress">Image Compressor</a></li>
+                <li><a href="?tool=img-pdf">Image to PDF</a></li>
+                <li><a href="?page=privacy">Privacy Policy</a></li>
+            </ul>
+        </div>
+    </noscript>
+
+    <script>
+        // --- ICONS ---
+        const svgs = {
+            age: `<svg class="w-10 h-10 text-orange-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>`,
+            gst: `<svg class="w-10 h-10 text-green-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1v22"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>`,
+            sip: `<svg class="w-10 h-10 text-blue-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="20" x2="12" y2="10"></line><line x1="18" y1="20" x2="18" y2="4"></line><line x1="6" y1="20" x2="6" y2="16"></line></svg>`,
+            bmi: `<svg class="w-10 h-10 text-red-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.42 4.58a5.4 5.4 0 0 0-7.65 0l-.77.78-.77-.78a5.4 5.4 0 0 0-7.65 0C1.46 6.7 1.33 10.28 4 13l8 8 8-8c2.67-2.72 2.54-6.3.42-8.42z"/></svg>`,
+            text: `<svg class="w-10 h-10 text-purple-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>`,
+            discount: `<svg class="w-10 h-10 text-yellow-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg>`,
+            bank: `<svg class="w-10 h-10 text-indigo-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"/><path d="M5 21v-7"/><path d="M19 21v-7"/><path d="M2 10h20"/><path d="M12 3L2 10h20L12 3z"/><path d="M12 21v-9"/></svg>`,
+            percent: `<svg class="w-10 h-10 text-teal-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="5" x2="5" y2="19"></line><circle cx="6.5" cy="6.5" r="2.5"></circle><circle cx="17.5" cy="17.5" r="2.5"></circle></svg>`,
+            water: `<svg class="w-10 h-10 text-blue-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"></path></svg>`,
+            ruler: `<svg class="w-10 h-10 text-orange-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h20"/><path d="M6 12v-2"/><path d="M10 12v-4"/><path d="M14 12v-2"/><path d="M18 12v-4"/></svg>`,
+            lock: `<svg class="w-10 h-10 text-slate-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>`,
+            tip: `<svg class="w-10 h-10 text-emerald-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>`,
+            image: `<svg class="w-10 h-10 text-pink-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>`,
+            pdf: `<svg class="w-10 h-10 text-red-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>`,
+            cake: `<svg class="w-16 h-16 mx-auto mb-2 text-pink-500 animate-float" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-8a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8"/><path d="M4 16s.5-1 2-1 2.5 2 4 2 2.5-2 4-2 2.5 2 4 2 2 1 2 1"/><path d="M2 21h20"/><path d="M7 8v2"/><path d="M12 8v2"/><path d="M17 8v2"/></svg>`,
+            check: `<svg class="w-16 h-16 mx-auto mb-2 text-green-500 animate-float" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>`,
+            growth: `<svg class="w-16 h-16 mx-auto mb-2 text-blue-500 animate-float" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 6l-9.5 9.5-5-5L1 18"/><path d="M17 6h6v6"/></svg>`,
+            drop: `<svg class="w-16 h-16 mx-auto mb-2 text-blue-400 animate-float" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"></path></svg>`,
+            key: `<svg class="w-16 h-16 mx-auto mb-2 text-yellow-500 animate-float" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="15" r="4"/><line x1="10.85" y1="12.15" x2="19" y2="4"/><line x1="18" y1="5" x2="20" y2="7"/><line x1="15" y1="8" x2="17" y2="10"/></svg>`,
+            download: `<svg class="w-16 h-16 mx-auto mb-2 text-primary animate-float" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>`
+        };
+
+        // --- STATIC PAGES ---
+        const staticPages = {
+            about: {
+                title: "About Us",
+                content: `<h2>Welcome to Indian Tools Hub</h2><p>Indian Tools Hub is a free online platform built with a single mission: to provide <strong>fast, accurate, and easy-to-use digital tools</strong> for everyone in India.</p><h2>Our Mission</h2><p>We focus on tools relevant to the Indian context, such as GST calculation, SIP returns, and property area conversions (Gaj/Sq.Ft).</p>`
+            },
+            privacy: {
+                title: "Privacy Policy",
+                content: `<p><strong>Last Updated: 2025</strong></p><p>We do not require you to create an account or provide personal information. All calculations happen locally on your device (Client-Side). We do not save your inputs on our servers.</p>`
+            },
+            contact: {
+                title: "Contact Us",
+                content: `<h2>Get in Touch</h2><p>Have a suggestion? Email us at: <a href="mailto:contact@indiantoolshub.com">contact@indiantoolshub.com</a></p>`
+            }
+        };
+
+        // --- TOOLS DB ---
+        const toolsDatabase = [
+            { id: 'age-calculator', title: 'Age Calculator', subtitle: 'Find exact age.', category: 'Calculator Tools', svgIcon: svgs.age, inputs: [{type:'date',id:'d'},{type:'date',id:'t',defaultValue:new Date().toISOString().split('T')[0]}], buttonText:'Calculate', logic:(v)=>{let d=new Date(v.d),t=new Date(v.t); if(!v.d)return "Enter DOB"; let y=t.getFullYear()-d.getFullYear(),m=t.getMonth()-d.getMonth(),day=t.getDate()-d.getDate(); if(day<0){m--;day+=new Date(t.getFullYear(),t.getMonth(),0).getDate()} if(m<0){y--;m+=12} return `<div class="text-center">${svgs.cake}<div class="text-4xl font-bold mb-1">${y} Years</div><div>${m} Months, ${day} Days</div></div>`}, explanation: "Calculate exact age from your Date of Birth.", usage: ["Select your Date of Birth", "Click Calculate"], examples: ["DOB: 15/08/1947 → 77 Years"], faq: [{q:"Accurate?", a:"Yes"}] },
+            { id: 'gst-calculator', title: 'GST Calculator', subtitle: 'Add/Remove GST.', category: 'Calculator Tools', svgIcon: svgs.gst, inputs: [{type:'number',id:'a',label:'Amount'},{type:'select',id:'r',options:[{val:18,txt:'18%'},{val:5,txt:'5%'},{val:12,txt:'12%'},{val:28,txt:'28%'}]},{type:'select',id:'t',options:[{val:'a',txt:'Add'},{val:'r',txt:'Remove'}]}], buttonText:'Calculate', logic:(v)=>{let a=parseFloat(v.a),r=parseFloat(v.r),g,t; if(!a)return "Enter Amt"; if(v.t=='a'){g=a*r/100;t=a+g}else{t=a;a=t*(100/(100+r));g=t-a} return `<div class="text-center">${svgs.check}<div class="grid grid-cols-2 gap-2 mt-4"><div class="bg-blue-50 p-2 rounded"><div>GST</div><div class="font-bold">₹${g.toFixed(2)}</div></div><div class="bg-blue-50 p-2 rounded"><div>Total</div><div class="font-bold">₹${t.toFixed(2)}</div></div></div></div>`}, explanation:"GST Calc.", usage:["Enter Amount", "Select Rate", "Calculate"], examples:["1000 + 18%"], faq:[{q:"Std rate?", a:"18%"}] },
+            { id: 'discount-calc', title: 'Discount Calculator', subtitle: 'Sale price & savings.', category: 'Calculator Tools', svgIcon: svgs.discount, inputs: [{type:'number',id:'p',label:'Original Price (₹)'},{type:'number',id:'d',label:'Discount (%)'}], buttonText: 'Calculate Savings', logic: (v)=>{const p=parseFloat(v.p),d=parseFloat(v.d); if(!p||!d)return"Enter values"; const s=(p*d)/100, f=p-s; return `<div class="text-center">${svgs.check}<div class="text-sm text-gray-500">Payable Amount</div><div class="text-3xl font-bold text-primary mb-2">₹${f.toFixed(0)}</div><div class="text-green-600 font-bold bg-green-50 p-2 rounded">You Save: ₹${s.toFixed(0)}</div></div>`}, explanation:"Find sale price.", usage:["Enter Price", "Enter %"], examples:["₹1000 - 20% = ₹800"], faq:[{q:"Useful?",a:"For shopping"}] },
+            { id: 'fd-calc', title: 'FD Calculator', subtitle: 'Fixed Deposit Returns.', category: 'Calculator Tools', svgIcon: svgs.bank, inputs: [{type:'number',id:'p',label:'Investment (₹)'},{type:'number',id:'r',label:'Interest Rate (%)'},{type:'number',id:'t',label:'Time (Years)'}], buttonText: 'Calculate Maturity', logic: (v)=>{const p=parseFloat(v.p),r=parseFloat(v.r),t=parseFloat(v.t); if(!p)return"Enter details"; const m=p*Math.pow((1+r/400),(4*t)); return `<div class="text-center">${svgs.growth}<div class="text-sm">Maturity Value</div><div class="text-3xl font-bold text-primary mb-2">₹${Math.round(m).toLocaleString('en-IN')}</div><div class="text-xs text-gray-400">Compounded Quarterly</div></div>`}, explanation:"Bank FD calculator.", usage:["Enter Amount", "Rate", "Years"], examples:["1L @ 7% 5yr"], faq:[{q:"Compounding?",a:"Quarterly"}] },
+            { id: 'rd-calc', title: 'RD Calculator', subtitle: 'Recurring Deposit.', category: 'Calculator Tools', svgIcon: svgs.bank, inputs: [{type:'number',id:'p',label:'Monthly Inv (₹)'},{type:'number',id:'r',label:'Rate (%)'},{type:'number',id:'t',label:'Time (Years)'}], buttonText: 'Calculate', logic: (v)=>{const p=parseFloat(v.p),r=parseFloat(v.r),t=parseFloat(v.t); if(!p)return"Enter details"; const n=t*12; const m=p*n + (p*n*(n+1)/2)*(r/100)*(1/12); return `<div class="text-center">${svgs.growth}<div class="text-sm">Total Value</div><div class="text-3xl font-bold text-primary mb-2">₹${Math.round(m).toLocaleString('en-IN')}</div><div class="text-sm text-gray-500">Deposited: ₹${(p*n).toLocaleString('en-IN')}</div></div>`}, explanation:"Post Office/Bank RD.", usage:["Monthly Amt", "Rate", "Years"], examples:["5000 @ 7% 5yr"], faq:[{q:"Formula?",a:"Simple Interest on monthly"}] },
+            { id: 'simple-interest', title: 'Simple Interest', subtitle: 'School/Loan Interest.', category: 'Calculator Tools', svgIcon: svgs.percent, inputs: [{type:'number',id:'p',label:'Principal (₹)'},{type:'number',id:'r',label:'Rate (% p.a)'},{type:'number',id:'t',label:'Time (Years)'}], buttonText: 'Calculate', logic: (v)=>{const p=parseFloat(v.p),r=parseFloat(v.r),t=parseFloat(v.t); if(!p)return"Enter values"; const i=(p*r*t)/100; return `<div class="text-center">${svgs.check}<div class="text-sm">Interest Amount</div><div class="text-3xl font-bold text-primary mb-2">₹${i.toLocaleString('en-IN')}</div><div class="text-sm font-bold">Total: ₹${(p+i).toLocaleString('en-IN')}</div></div>`}, explanation:"Basic SI calculator.", usage:["P, R, T"], examples:["10000, 10%, 2yr"], faq:[{q:"Compound?",a:"No"}] },
+            { id: 'percentage-calc', title: 'Percentage Calc', subtitle: 'Marks, Growth %.', category: 'Calculator Tools', svgIcon: svgs.percent, inputs: [{type:'number',id:'a',label:'Value (e.g. Marks Scored)'},{type:'number',id:'b',label:'Total (e.g. Out of)'}], buttonText: 'Get Percentage', logic: (v)=>{const a=parseFloat(v.a),b=parseFloat(v.b); if(!b)return"Enter Total"; const res=(a/b)*100; return `<div class="text-center">${svgs.check}<div class="text-4xl font-bold text-primary">${res.toFixed(2)}%</div></div>`}, explanation:"Find percentage of marks.", usage:["Scored", "Total"], examples:["450/500 = 90%"], faq:[{q:"Any max?",a:"No"}] },
+            { id: 'tip-calc', title: 'Tip Calculator', subtitle: 'Split bill easily.', category: 'Calculator Tools', svgIcon: svgs.tip, inputs: [{type:'number',id:'b',label:'Bill Amount'},{type:'number',id:'p',label:'People'},{type:'number',id:'t',label:'Tip %',defaultValue:10}], buttonText: 'Split Bill', logic: (v)=>{const b=parseFloat(v.b),p=parseFloat(v.p),t=parseFloat(v.t); if(!b||!p)return"Enter bill"; const tip=b*t/100, tot=b+tip, per=tot/p; return `<div class="text-center">${svgs.check}<div class="text-sm">Per Person</div><div class="text-3xl font-bold text-primary">₹${per.toFixed(0)}</div><div class="text-xs text-gray-500 mt-1">Total Bill: ₹${tot.toFixed(0)} (Inc. ₹${tip} Tip)</div></div>`}, explanation:"Split restaurant bills.", usage:["Bill", "People"], examples:["1000, 4 people"], faq:[{q:"Std tip?",a:"5-10%"}] },
+            { id: 'sip-calculator', title: 'SIP Calculator', subtitle: 'Check Mutual Fund Returns.', category: 'Calculator Tools', svgIcon: svgs.sip, inputs: [{type:'number',id:'inv',label:'Monthly Inv (₹)'},{type:'number',id:'rate',label:'Rate (%)'},{type:'number',id:'yrs',label:'Years'}], buttonText: 'Estimate Returns', logic: (v)=>{const p=parseFloat(v.inv),r=parseFloat(v.rate),n=parseFloat(v.yrs); if(!p||!r||!n) return "Enter all values"; const i=r/1200, m=n*12, M=p*((Math.pow(1+i,m)-1)/i)*(1+i); return `<div class="text-center">${svgs.growth}<div class="text-sm text-gray-500 mb-1">Total Value</div><div class="text-3xl font-bold text-primary mb-4">₹${Math.round(M).toLocaleString('en-IN')}</div><div class="bg-gray-50 rounded p-3 text-sm flex justify-between px-6"><span>Invested: <strong>₹${(p*m).toLocaleString('en-IN')}</strong></span><span class="text-green-600">Gain: <strong>₹${Math.round(M - (p*m)).toLocaleString('en-IN')}</strong></span></div></div>`; }, explanation: "Calculate returns on SIPs.", usage: ["Enter monthly amount", "Set return %", "Set years"], examples: ["5k/mo @ 12% for 10y = 11.6L"], faq: [{q:"Avg return?", a:"12-15%"}] },
+            
+            // IMAGE & PDF
+            { 
+                id: 'img-compress', 
+                title: 'Image Compressor', 
+                subtitle: 'Reduce image size safely.', 
+                category: 'Image & PDF Tools', 
+                svgIcon: svgs.image, 
+                inputs: [{type:'file',id:'f',label:'Select Image',accept:'image/*'},{type:'select',id:'q',label:'Quality',options:[{val:0.5,txt:'Medium (50%)'},{val:0.1,txt:'Low (Max Compression)'},{val:0.8,txt:'High (80%)'}]}], 
+                buttonText: 'Compress Image', 
+                logic: async (v)=>{
+                    const file = v.f; if(!file) return "Please select an image.";
+                    return new Promise((resolve) => {
+                        const reader = new FileReader();
+                        reader.readAsDataURL(file);
+                        reader.onload = (event) => {
+                            const img = new Image();
+                            img.src = event.target.result;
+                            img.onload = () => {
+                                const canvas = document.createElement('canvas');
+                                canvas.width = img.width; canvas.height = img.height;
+                                const ctx = canvas.getContext('2d');
+                                ctx.drawImage(img, 0, 0);
+                                const quality = parseFloat(v.q);
+                                const compressedDataUrl = canvas.toDataURL('image/jpeg', quality);
+                                resolve(`<div class="text-center">${svgs.download}<a href="${compressedDataUrl}" download="compressed-image.jpg" class="inline-block bg-primary text-white px-6 py-3 rounded-lg font-bold shadow-lg hover:bg-primaryDark transition mt-2">Download Compressed Image</a><p class="text-xs text-gray-400 mt-2">Format: JPG</p></div>`);
+                            };
+                        };
+                    });
+                },
+                explanation: "Compress images (JPG/PNG) to reduce file size for uploading.", usage: ["Select Image", "Choose Quality", "Download"], examples: ["5MB -> 500KB"], faq: [{q:"Privacy?", a:"Locally processed."}] 
+            },
+            {
+                id: 'img-pdf',
+                title: 'Image to PDF',
+                subtitle: 'Convert JPG/PNG to PDF.',
+                category: 'Image & PDF Tools',
+                svgIcon: svgs.pdf,
+                inputs: [{type:'file',id:'f',label:'Select Image',accept:'image/*'}],
+                buttonText: 'Convert to PDF',
+                logic: async (v) => {
+                    const file = v.f; if(!file) return "Please select an image.";
+                    const { jsPDF } = window.jspdf;
+                    return new Promise((resolve) => {
+                        const reader = new FileReader();
+                        reader.readAsDataURL(file);
+                        reader.onload = (event) => {
+                            const imgData = event.target.result;
+                            const pdf = new jsPDF();
+                            const imgProps = pdf.getImageProperties(imgData);
+                            const pdfWidth = pdf.internal.pageSize.getWidth();
+                            const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+                            pdf.addImage(imgData, 'JPEG', 0, 0, pdfWidth, pdfHeight);
+                            const pdfOutput = pdf.output('bloburl');
+                            resolve(`<div class="text-center">${svgs.download}<a href="${pdfOutput}" target="_blank" class="inline-block bg-red-600 text-white px-6 py-3 rounded-lg font-bold shadow-lg hover:bg-red-700 transition mt-2">Open/Download PDF</a></div>`);
+                        }
+                    });
+                },
+                explanation: "Instantly convert any image into a PDF document.", usage: ["Select Image", "Click Convert", "Download PDF"], examples: ["JPG -> PDF"], faq: [{q:"Watermark?", a:"No"}]
+            },
+            {
+                id: 'jpg-converter',
+                title: 'JPG Converter',
+                subtitle: 'Convert PNG/WebP to JPG.',
+                category: 'Image & PDF Tools',
+                svgIcon: svgs.image,
+                inputs: [{type:'file',id:'f',label:'Select Image (PNG/WebP)',accept:'image/*'}],
+                buttonText: 'Convert to JPG',
+                logic: async (v) => {
+                    const file = v.f; if(!file) return "Select File";
+                    return new Promise((resolve) => {
+                        const reader = new FileReader();
+                        reader.readAsDataURL(file);
+                        reader.onload = (e) => {
+                            const img = new Image();
+                            img.src = e.target.result;
+                            img.onload = () => {
+                                const canvas = document.createElement('canvas');
+                                canvas.width = img.width; canvas.height = img.height;
+                                const ctx = canvas.getContext('2d');
+                                ctx.drawImage(img,0,0);
+                                const jpgUrl = canvas.toDataURL('image/jpeg', 0.9);
+                                resolve(`<div class="text-center">${svgs.download}<a href="${jpgUrl}" download="converted.jpg" class="inline-block bg-primary text-white px-6 py-3 rounded-lg font-bold shadow-lg mt-2">Download JPG</a></div>`);
+                            }
+                        }
+                    });
+                },
+                explanation: "Convert transparent PNG or WebP files to standard JPG.", usage: ["Select File", "Convert", "Download"], examples: ["PNG -> JPG"], faq: [{q:"Quality?", a:"High"}]
+            },
+
+            // HEALTH
+            { id: 'bmi-calc', title: 'BMI Calculator', subtitle: 'Health Check.', category: 'Health Tools', svgIcon: svgs.bmi, inputs: [{type:'number',id:'w',label:'Weight (kg)'},{type:'number',id:'h',label:'Height (cm)'}], buttonText:'Check', logic:(v)=>{const w=parseFloat(v.w),h=parseFloat(v.h)/100;if(!w||!h)return"Enter data";const b=(w/(h*h)).toFixed(1);let s="Normal",c="text-green-600";if(b<18.5){s="Underweight";c="text-yellow-600"}else if(b>25){s="Overweight";c="text-red-600"}return`<div class="text-center">${svgs.cake}<div class="text-4xl font-bold ${c}">${b}</div><div class="text-lg">${s}</div></div>`}, explanation:"BMI Score.", usage:["Weight", "Height"], examples:["70kg 175cm"], faq:[{q:"Good?",a:"18-25"}] },
+            { id: 'water-calc', title: 'Water Intake', subtitle: 'Daily hydration need.', category: 'Health Tools', svgIcon: svgs.water, inputs: [{type:'number',id:'w',label:'Weight (kg)'}], buttonText: 'Calculate', logic: (v)=>{const w=parseFloat(v.w); if(!w)return"Enter weight"; const l=(w*0.033).toFixed(1); return `<div class="text-center">${svgs.drop}<div class="text-sm">Daily Requirement</div><div class="text-3xl font-bold text-blue-500">${l} Litres</div><div class="text-sm text-gray-500">approx ${Math.ceil(l*4)} glasses</div></div>`}, explanation:"Hydration calculator.", usage:["Weight"], examples:["60kg -> 2L"], faq:[{q:"Accurate?",a:"Estimate"}] },
+            
+            // TEXT & UTILITY
+            { id: 'word-count', title: 'Word Counter', subtitle: 'Words & Chars.', category: 'Text Tools', svgIcon: svgs.text, inputs: [{type:'textarea',id:'t'}], buttonText:'Count', logic:(v)=>{let t=v.t.trim();if(!t)return"No text";return `<div class="text-center">${svgs.check}<div class="text-2xl font-bold">${t.split(/\s+/).length} Words</div><div>${t.length} Chars</div></div>`}, explanation:"Count words.", usage:["Paste text"], examples:["Hello"], faq:[{q:"Spaces?",a:"Yes"}] },
+            { id: 'case-conv', title: 'Case Converter', subtitle: 'UPPER, lower, Title.', category: 'Text Tools', svgIcon: svgs.text, inputs: [{type:'textarea',id:'t',label:'Enter Text'}, {type:'select',id:'m',options:[{val:'u',txt:'UPPERCASE'},{val:'l',txt:'lowercase'},{val:'c',txt:'Capitalize'}]}], buttonText: 'Convert', logic: (v)=>{let t=v.t; if(!t)return"No text"; let r=t; if(v.m=='u')r=t.toUpperCase(); else if(v.m=='l')r=t.toLowerCase(); else r=t.replace(/\b\w/g,c=>c.toUpperCase()); return `<div class="bg-gray-50 p-3 rounded text-left font-mono text-sm break-all">${r}</div>`}, explanation:"Change text case.", usage:["Paste", "Select"], examples:["abc -> ABC"], faq:[{q:"Limit?",a:"No"}] },
+            { id: 'pass-gen', title: 'Password Gen', subtitle: 'Secure passwords.', category: 'Utility Tools', svgIcon: svgs.lock, inputs: [{type:'number',id:'l',label:'Length',defaultValue:12}], buttonText: 'Generate', logic: (v)=>{const l=parseInt(v.l)||12; const c="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*"; let p=""; for(let i=0;i<l;i++)p+=c.charAt(Math.floor(Math.random()*c.length)); return `<div class="text-center">${svgs.key}<div class="bg-gray-100 p-3 rounded font-mono text-lg break-all select-all border border-gray-300 text-gray-800">${p}</div><div class="text-xs text-gray-400 mt-2">Long press to copy</div></div>`}, explanation:"Random password generator.", usage:["Length", "Generate"], examples:["12 chars"], faq:[{q:"Secure?",a:"Yes, random"}] },
+            { id: 'area-conv', title: 'Area Converter', subtitle: 'Sq.Ft to Gaj.', category: 'Utility Tools', svgIcon: svgs.ruler, inputs: [{type:'number',id:'v',label:'Value'}, {type:'select',id:'u',options:[{val:'f2g',txt:'Sq.Ft to Gaj'},{val:'g2f',txt:'Gaj to Sq.Ft'},{val:'m2f',txt:'Sq.M to Sq.Ft'}]}], buttonText: 'Convert', logic: (v)=>{const val=parseFloat(v.v); if(!val)return"Enter value"; let r,u; if(v.u=='f2g'){r=val/9;u="Gaj"} else if(v.u=='g2f'){r=val*9;u="Sq.Ft"} else {r=val*10.764;u="Sq.Ft"} return `<div class="text-center">${svgs.check}<div class="text-3xl font-bold text-primary">${r.toFixed(2)} ${u}</div></div>`}, explanation:"Land area converter.", usage:["Value", "Unit"], examples:["900 SqFt = 100 Gaj"], faq:[{q:"Standard?",a:"Indian Gaj"}] },
+        ];
+
+        // --- SEO & ROUTING ---
+        function updateSEO(data) {
+            document.title = data.title;
+            document.querySelector('meta[name="description"]').setAttribute('content', data.desc);
+            const canonical = `https://indiantoolshub.com/${data.id ? '?tool='+data.id : (data.page ? '?page='+data.page : '')}`;
+            document.getElementById('canonical-link').setAttribute('href', canonical);
+        }
+
+        function handleNav(e, dest) {
+            if(e) e.preventDefault();
+            if(dest === 'home') { history.pushState(null, '', '/'); renderHome(); }
+            else if (dest === 'calc') { history.pushState(null, '', '/'); renderHome('Calculator Tools'); }
+        }
+
+        function openPage(pageId) { history.pushState({page: pageId}, '', `?page=${pageId}`); renderStaticPage(pageId); }
+        function openTool(toolId) { history.pushState({tool: toolId}, '', `?tool=${toolId}`); renderTool(toolId); }
+
+        const app = document.getElementById('app-container');
+
+        // 1. STATIC PAGES
+        function renderStaticPage(pageId) {
+            window.scrollTo({top:0});
+            const pageData = staticPages[pageId];
+            if(!pageData) return renderHome();
+            updateSEO({ title: `${pageData.title} - Indian Tools Hub`, desc: `${pageData.title}.`, page: pageId });
+            app.innerHTML = `<button onclick="handleNav(event, 'home')" class="mb-6 flex items-center gap-1 text-xs text-gray-500 hover:text-primary font-bold hover:-translate-x-1 transition"><i data-lucide="arrow-left" class="w-3 h-3"></i> HOME</button><div class="bg-white rounded-xl shadow-lg border border-gray-100 p-8 max-w-2xl mx-auto animate-slide-up"><h1 class="text-3xl font-bold text-gray-900 mb-6 font-display border-b pb-4">${pageData.title}</h1><div class="prose prose-blue max-w-none text-sm text-gray-600 leading-relaxed">${pageData.content}</div></div>`;
+            lucide.createIcons();
+        }
+
+        // 2. HOME
+        function getToolsGridHTML(excludeId = null) {
+            let html = '';
+            const cats = ['Calculator Tools', 'Image & PDF Tools', 'Health Tools', 'Text Tools', 'Utility Tools'];
+            cats.forEach((cat) => {
+                const tools = toolsDatabase.filter(t => t.category === cat && t.id !== excludeId);
+                if(tools.length){
+                    html += `<div class="mb-8 animate-slide-up"><h2 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-3 ml-1">${cat}</h2><div class="grid grid-cols-1 sm:grid-cols-2 gap-3">${tools.map(t=>`
+                        <a href="?tool=${t.id}" onclick="event.preventDefault(); openTool('${t.id}')" class="bg-white p-4 rounded-xl border border-gray-100 shadow-sm hover:shadow-md hover:border-blue-300 hover:-translate-y-1 transition-all cursor-pointer flex items-center gap-4 group">
+                            <div class="p-2.5 bg-blue-50 rounded-lg group-hover:scale-110 group-hover:bg-blue-100 transition">${t.svgIcon.replace('w-10 h-10','w-6 h-6')}</div>
+                            <div class="flex-grow"><h3 class="font-bold text-gray-800 text-sm font-display">${t.title}</h3><p class="text-[10px] text-gray-500 line-clamp-1">${t.subtitle}</p></div>
+                            <i data-lucide="chevron-right" class="w-4 h-4 text-gray-300 group-hover:text-primary"></i>
+                        </a>`).join('')}</div></div>`;
+                }
+            });
+            return html;
+        }
+
+        function getRelatedToolsHTML(category, excludeId = null) {
+            const tools = toolsDatabase.filter(t => t.category === category && t.id !== excludeId);
+            if(tools.length > 0) return `<div class="grid grid-cols-1 sm:grid-cols-2 gap-3">${tools.map(t=>`<a href="?tool=${t.id}" onclick="event.preventDefault(); openTool('${t.id}')" class="bg-white p-4 rounded-xl border border-gray-100 shadow-sm hover:shadow-md hover:border-blue-300 hover:-translate-y-1 transition-all cursor-pointer flex items-center gap-4 group"><div class="p-2.5 bg-blue-50 rounded-lg group-hover:scale-110 group-hover:bg-blue-100 transition">${t.svgIcon.replace('w-10 h-10','w-6 h-6')}</div><div class="flex-grow"><h3 class="font-bold text-gray-800 text-sm font-display">${t.title}</h3><p class="text-[10px] text-gray-500 line-clamp-1">${t.subtitle}</p></div><i data-lucide="chevron-right" class="w-4 h-4 text-gray-300 group-hover:text-primary"></i></a>`).join('')}</div>`;
+            return `<p class="text-center text-gray-400 text-sm">No related tools.</p>`;
+        }
+
+        function renderHome(activeCat = 'All') {
+            updateSEO({ title: "Indian Tools Hub - 15+ Fast Online Tools", desc: "Ultra-fast daily tools for Indians." });
+            window.scrollTo({top:0});
+            const cats = ['All', 'Calculator Tools', 'Image & PDF Tools', 'Health Tools', 'Text Tools', 'Utility Tools'];
+            const pills = cats.map(c => `<button onclick="renderHome('${c}')" class="${c===activeCat?'active-pill':'inactive-pill'} px-4 py-2 rounded-full text-xs font-bold border transition whitespace-nowrap">${c.replace(' Tools','')}</button>`).join('');
+            
+            let html = `<div class="text-center mb-6 mt-2 animate-slide-up"><h1 class="text-3xl font-bold text-gray-900 mb-1 font-display">Indian Tools Hub</h1><p class="text-xs text-gray-500">18+ Tools for Daily Tasks</p></div><div class="flex gap-2 overflow-x-auto hide-scroll pb-4 mb-2 animate-slide-up justify-start sm:justify-center px-1">${pills}</div><div class="ad-slot animate-slide-up">Ad Space</div>`;
+            if(activeCat === 'All') html += getToolsGridHTML();
+            else {
+                 const tools = toolsDatabase.filter(t => t.category === activeCat);
+                 html += `<div class="mb-8 animate-slide-up"><div class="grid grid-cols-1 sm:grid-cols-2 gap-3">${tools.map(t=>`<a href="?tool=${t.id}" onclick="event.preventDefault(); openTool('${t.id}')" class="bg-white p-4 rounded-xl border border-gray-100 shadow-sm hover:shadow-md hover:border-blue-300 hover:-translate-y-1 transition-all cursor-pointer flex items-center gap-4 group"><div class="p-2.5 bg-blue-50 rounded-lg group-hover:scale-110 group-hover:bg-blue-100 transition">${t.svgIcon.replace('w-10 h-10','w-6 h-6')}</div><div class="flex-grow"><h3 class="font-bold text-gray-800 text-sm font-display">${t.title}</h3><p class="text-[10px] text-gray-500 line-clamp-1">${t.subtitle}</p></div><i data-lucide="chevron-right" class="w-4 h-4 text-gray-300 group-hover:text-primary"></i></a>`).join('')}</div></div>`;
+            }
+            app.innerHTML = html;
+            lucide.createIcons();
+        }
+
+        // 3. TOOL UI
+        function renderTool(id) {
+            window.scrollTo({top:0});
+            const t = toolsDatabase.find(x => x.id === id);
+            if (!t) return renderHome();
+            updateSEO({ title: `${t.title} - Indian Tools Hub`, desc: `${t.explanation}`, id: t.id, toolTitle: t.title });
+
+            const inputs = t.inputs.map((i,idx) => {
+                const anim = `animate-slide-up delay-${(idx+1)*100}`;
+                const uniqueId = `${t.id}_${i.id}`;
+                if(i.type==='select') return `<div class="mb-4 ${anim} opacity-0" style="animation-fill-mode:forwards"><label class="block text-xs font-bold text-gray-700 mb-1 uppercase">${i.label||'Select'}</label><div class="relative"><select id="${uniqueId}" class="tool-input w-full p-3 rounded-lg bg-gray-50 appearance-none">${i.options.map(o=>`<option value="${o.val}">${o.txt}</option>`).join('')}</select><i data-lucide="chevron-down" class="absolute right-3 top-3.5 w-4 h-4 text-gray-400"></i></div></div>`;
+                if(i.type==='textarea') return `<div class="mb-4 ${anim} opacity-0" style="animation-fill-mode:forwards"><label class="block text-xs font-bold text-gray-700 mb-1 uppercase">${i.label||'Enter Text'}</label><textarea id="${uniqueId}" class="tool-input w-full p-3 rounded-lg bg-gray-50" rows="4"></textarea></div>`;
+                if(i.type==='file') return `<div class="mb-4 ${anim} opacity-0" style="animation-fill-mode:forwards"><label class="block text-xs font-bold text-gray-700 mb-1 uppercase">${i.label||'Select File'}</label><input type="file" id="${uniqueId}" accept="${i.accept}" class="tool-input w-full p-2 bg-white text-sm"></div>`;
+                return `<div class="mb-4 ${anim} opacity-0" style="animation-fill-mode:forwards"><label class="block text-xs font-bold text-gray-700 mb-1 uppercase">${i.label}</label><input type="${i.type}" id="${uniqueId}" value="${i.defaultValue||''}" class="tool-input w-full p-3 rounded-lg bg-gray-50"></div>`;
+            }).join('');
+
+            const usageHTML = t.usage.map(u => `<li>${u}</li>`).join('');
+
+            app.innerHTML = `<button onclick="handleNav(event, 'home')" class="mb-4 flex items-center gap-1 text-xs text-gray-500 hover:text-primary font-bold hover:-translate-x-1 transition"><i data-lucide="arrow-left" class="w-3 h-3"></i> HOME</button><div class="text-center mb-6 animate-slide-up"><div class="inline-block p-3 bg-white rounded-2xl shadow-sm border border-gray-100 mb-2 animate-pop-in">${t.svgIcon}</div><h1 class="text-2xl font-bold text-gray-900 font-display">${t.title}</h1><p class="text-xs text-gray-500">${t.subtitle}</p></div><div class="bg-white rounded-xl shadow-lg shadow-blue-900/5 border border-gray-100 p-6 mb-6 max-w-lg mx-auto animate-slide-up opacity-0" style="animation-fill-mode:forwards">${inputs}<button onclick="calc('${t.id}')" class="btn-press w-full bg-primary hover:bg-primaryDark text-white font-bold py-3.5 rounded-lg shadow-lg shadow-blue-500/30 mt-2 animate-slide-up delay-200 opacity-0" style="animation-fill-mode:forwards">${t.buttonText}</button><div id="res" class="hidden mt-6 pt-6 border-t border-dashed border-gray-200"><div id="res-c"></div><button onclick="document.getElementById('res').classList.add('hidden')" class="w-full mt-4 text-xs text-gray-400 font-bold uppercase hover:text-gray-600">Clear Result</button></div></div><div class="ad-slot max-w-lg mx-auto mb-8">Ad Space</div><div class="bg-white rounded-xl p-5 border border-gray-100 prose prose-sm max-w-none animate-slide-up delay-300 opacity-0 mb-10" style="animation-fill-mode:forwards"><h3 class="font-bold text-gray-900 text-sm mb-2">About</h3><p class="text-gray-600 text-xs mb-4">${t.explanation}</p><h3 class="font-bold text-gray-900 text-sm mb-2">How to Use</h3><ul class="list-disc list-inside text-gray-600 text-xs mb-4 space-y-1">${usageHTML}</ul><h3 class="font-bold text-gray-900 text-sm mb-2">Example</h3><div class="bg-gray-50 p-2 rounded border border-gray-200 text-xs font-mono text-gray-600">${t.examples[0]}</div></div><div class="pt-6 border-t border-gray-200 animate-slide-up delay-300 opacity-0" style="animation-fill-mode:forwards"><h3 class="text-center text-sm font-bold text-gray-400 uppercase tracking-widest mb-6">Related Tools</h3>${getRelatedToolsHTML(t.category, t.id)}</div>`;
+            lucide.createIcons();
+        }
+
+        // Logic
+        async function calc(id) {
+            try {
+                const t = toolsDatabase.find(x => x.id === id);
+                const v = {}; 
+                t.inputs.forEach(i => {
+                    const uniqueId = `${t.id}_${i.id}`;
+                    const el = document.getElementById(uniqueId);
+                    if(i.type === 'file') v[i.id] = el.files[0];
+                    else v[i.id] = el.value;
+                });
+                
+                const rBox = document.getElementById('res');
+                const rCon = document.getElementById('res-c');
+                rCon.innerHTML = '<div class="text-center text-gray-400 text-sm py-2">Processing...</div>';
+                rBox.classList.remove('hidden');
+                
+                await new Promise(r => setTimeout(r, 50));
+
+                const result = await t.logic(v);
+                rCon.innerHTML = result;
+                rBox.scrollIntoView({behavior:'smooth',block:'center'}); 
+            } catch (e) { console.error("Error", e); }
+        }
+
+        // Init
+        document.addEventListener('DOMContentLoaded', () => {
+            const params = new URLSearchParams(window.location.search);
+            const toolId = params.get('tool');
+            const pageId = params.get('page');
+            if (toolId && toolsDatabase.find(t => t.id === toolId)) renderTool(toolId);
+            else if (pageId && staticPages[pageId]) renderStaticPage(pageId);
+            else renderHome('All');
+        });
+
+        window.addEventListener('popstate', (e) => {
+            const params = new URLSearchParams(window.location.search);
+            const toolId = params.get('tool');
+            const pageId = params.get('page');
+            if (toolId) renderTool(toolId);
+            else if (pageId) renderStaticPage(pageId);
+            else renderHome('All');
+        });
+    </script>
+    <style>.delay-100{animation-delay:100ms}.delay-200{animation-delay:200ms}.delay-300{animation-delay:300ms}</style>
+</body>
+</html>
+
+
