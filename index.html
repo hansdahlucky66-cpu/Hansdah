@@ -4,15 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TaskNero - 50+ Free Online Tools</title>
-    <meta name="description" content="TaskNero offers 50+ free online tools for daily use. Calculate Age, GST, SIP, convert Images, and more. Fast, Secure, and Mobile-Friendly.">
-    <meta name="keywords" content="TaskNero, online tools, age calculator, gst calculator, sip calculator, image compressor, pdf tools, free tools">
-    <meta name="robots" content="index, follow">
+    <meta name="description" content="TaskNero offers 50+ free tools: QR Code, HTML Editor, Age Calc, GST, SIP, Image Tools. Fast, Secure & Mobile-Friendly.">
     <meta name="theme-color" content="#2563eb">
     <link rel="canonical" href="https://tasknero.com/" id="canonical-link">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%232563eb' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><polygon points='13 2 3 14 12 14 11 22 21 10 12 10 13 2'></polygon></svg>">
 
-    <!-- Fonts & Libraries -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Libraries -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
@@ -31,21 +28,16 @@
         }
     </script>
     <style>
-        body { background-color: #f8f9fa; color: #1f2937; }
+        body { background-color: #f8f9fa; color: #1f2937; scroll-behavior: smooth; }
         .tool-input { border: 1px solid #e5e7eb; font-size: 16px; width: 100%; padding: 12px; border-radius: 8px; margin-bottom: 10px; transition: all 0.2s; }
         .tool-input:focus { border-color: #2563eb; outline: none; box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1); }
         .btn-press:active { transform: scale(0.98); }
         .active-pill { background-color: #2563eb; color: white; }
         .inactive-pill { background-color: white; color: #4b5563; border: 1px solid #e5e7eb; }
         .hide-scroll::-webkit-scrollbar { display: none; }
-        
-        /* Static Page Typography */
-        .seo-content h2, .prose h2 { font-size: 1.5rem; font-weight: 700; color: #1f2937; margin-top: 1.5rem; margin-bottom: 0.75rem; }
-        .seo-content h3, .prose h3 { font-size: 1.2rem; font-weight: 600; color: #374151; margin-top: 1rem; margin-bottom: 0.5rem; }
-        .seo-content p, .prose p { color: #4b5563; line-height: 1.7; margin-bottom: 1rem; }
-        .seo-content ul, .prose ul { list-style: disc; padding-left: 1.5rem; margin-bottom: 1rem; color: #4b5563; }
-        .seo-content li, .prose li { margin-bottom: 0.5rem; }
-        .prose a { color: #2563eb; text-decoration: underline; }
+        .search-container { position: relative; max-width: 500px; margin: 0 auto 20px auto; }
+        .search-icon { position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: #9ca3af; }
+        .search-input { padding-left: 45px; border-radius: 50px; border: 1px solid #e5e7eb; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); }
     </style>
 </head>
 <body class="flex flex-col min-h-screen">
@@ -54,7 +46,7 @@
     <nav class="bg-white/90 backdrop-blur-md border-b sticky top-0 z-50">
         <div class="max-w-4xl mx-auto px-4 h-16 flex items-center justify-between">
             <a href="/" onclick="handleNav(event, 'home')" class="flex items-center gap-2 font-bold text-xl text-gray-800 group">
-                <i data-lucide="zap" class="text-primary w-7 h-7"></i>
+                <i data-lucide="zap" class="text-primary w-6 h-6"></i>
                 <span>Task<span class="text-primary">Nero</span></span>
             </a>
             <button onclick="handleNav(event, 'home')" class="text-sm font-medium text-gray-600 hover:text-primary">All Tools</button>
@@ -64,158 +56,119 @@
     <!-- Main Content -->
     <main id="app-container" class="flex-grow max-w-4xl mx-auto w-full px-4 py-8"></main>
 
+    <!-- Back to Top -->
+    <button onclick="window.scrollTo({top:0, behavior:'smooth'})" id="topBtn" class="fixed bottom-6 right-6 bg-primary text-white p-3 rounded-full shadow-lg hidden hover:bg-primaryDark transition z-40">
+        <i data-lucide="arrow-up" class="w-6 h-6"></i>
+    </button>
+
     <!-- Footer -->
     <footer class="bg-white border-t mt-10">
         <div class="max-w-4xl mx-auto px-4 py-8 text-center text-gray-500 text-sm">
-            
-            <!-- Social Icons -->
             <div class="flex justify-center gap-6 mb-6">
                 <a href="#" class="p-2 rounded-full bg-blue-50 text-primary hover:bg-primary hover:text-white transition"><i data-lucide="facebook" class="w-5 h-5"></i></a>
                 <a href="#" class="p-2 rounded-full bg-blue-50 text-primary hover:bg-primary hover:text-white transition"><i data-lucide="instagram" class="w-5 h-5"></i></a>
                 <a href="#" class="p-2 rounded-full bg-blue-50 text-primary hover:bg-primary hover:text-white transition"><i data-lucide="twitter" class="w-5 h-5"></i></a>
-                <a href="#" class="p-2 rounded-full bg-blue-50 text-primary hover:bg-primary hover:text-white transition"><i data-lucide="mail" class="w-5 h-5"></i></a>
             </div>
-
-            <!-- Footer Links -->
             <div class="flex flex-wrap justify-center gap-4 mb-4 font-medium text-gray-600">
-                <a href="?page=about" onclick="event.preventDefault(); openPage('about')" class="hover:text-primary transition">About</a>
-                <a href="?page=privacy" onclick="event.preventDefault(); openPage('privacy')" class="hover:text-primary transition">Privacy Policy</a>
-                <a href="?page=terms" onclick="event.preventDefault(); openPage('terms')" class="hover:text-primary transition">Terms</a>
-                <a href="?page=disclaimer" onclick="event.preventDefault(); openPage('disclaimer')" class="hover:text-primary transition">Disclaimer</a>
-                <a href="?page=contact" onclick="event.preventDefault(); openPage('contact')" class="hover:text-primary transition">Contact</a>
+                <a href="?page=about" onclick="event.preventDefault(); openPage('about')" class="hover:text-primary">About</a>
+                <a href="?page=privacy" onclick="event.preventDefault(); openPage('privacy')" class="hover:text-primary">Privacy</a>
+                <a href="?page=contact" onclick="event.preventDefault(); openPage('contact')" class="hover:text-primary">Contact</a>
             </div>
-            
             <p>&copy; 2025 TaskNero. All Rights Reserved.</p>
         </div>
     </footer>
 
-    <!-- JS LOGIC -->
+    <!-- LOGIC -->
     <script>
-        // --- 50+ TOOLS DATABASE (Kept Same) ---
-        const svgs={age:'calendar',gst:'receipt',sip:'trending-up',discount:'percent',fd:'landmark',rd:'piggy-bank',emi:'home',img:'image',pdf:'file-text',bmi:'activity',water:'droplets',word:'type',pass:'lock',conv:'refresh-ccw',table:'grid'};
+        const svgs={age:'calendar',gst:'receipt',sip:'trending-up',discount:'percent',fd:'landmark',rd:'piggy-bank',emi:'home',img:'image',pdf:'file-text',bmi:'activity',water:'droplets',word:'type',pass:'lock',conv:'refresh-ccw',table:'grid', qr:'qr-code', code:'code', yt:'youtube', clock:'clock', diff:'calendar-days', fuel:'fuel', cash:'banknote', bin:'binary', color:'palette', ruler:'ruler', speed:'gauge', heart:'heart', shuffle:'shuffle'};
         
+        // --- 50+ TOOLS DATABASE ---
         const toolsDB = [
-            // FINANCE
-            { id: 'sip-calc', category: 'Finance', icon: svgs.sip, title: 'SIP Calculator', subtitle: 'Mutual Fund Returns', inputs: [{id:'i',type:'number',label:'Monthly Inv (₹)'},{id:'r',type:'number',label:'Rate (%)'},{id:'y',type:'number',label:'Years'}], btn: 'Calculate', logic: (v) => { let i=v.i, r=v.r/1200, n=v.y*12; let m=i*((Math.pow(1+r,n)-1)/r)*(1+r); return `<div class='text-3xl font-bold text-primary'>₹${Math.round(m).toLocaleString('en-IN')}</div>`; }, content: `<h2>SIP Calculator</h2><p>Calculate returns on your Systematic Investment Plans (SIP).</p>` },
-            { id: 'gst-calc', category: 'Finance', icon: svgs.gst, title: 'GST Calculator', subtitle: 'Add/Remove Tax', inputs: [{id:'a',type:'number',label:'Amount'},{id:'r',type:'select',label:'Rate',options:[{v:5,t:'5%'},{v:12,t:'12%'},{v:18,t:'18%'},{v:28,t:'28%'}]},{id:'t',type:'select',label:'Type',options:[{v:'add',t:'Add GST'},{v:'sub',t:'Remove GST'}]}], btn: 'Calculate', logic: (v) => { let a=parseFloat(v.a),r=parseFloat(v.r),g,t; if(v.t=='add'){g=a*r/100;t=a+g}else{t=a;a=t*(100/(100+r));g=t-a} return `<div class='grid grid-cols-2 gap-2 text-center'><div><small>GST</small><div class='font-bold'>₹${g.toFixed(2)}</div></div><div><small>Total</small><div class='font-bold text-primary'>₹${t.toFixed(2)}</div></div></div>`; }, content: `<h2>GST Calculator</h2><p>Easily calculate GST for inclusive and exclusive amounts.</p>` },
-            { id: 'emi-calc', category: 'Finance', icon: svgs.emi, title: 'Loan EMI Calc', subtitle: 'Home/Car Loan', inputs: [{id:'p',type:'number',label:'Loan Amount'},{id:'r',type:'number',label:'Interest Rate'},{id:'n',type:'number',label:'Years'}], btn:'Check EMI', logic:(v)=>{let p=v.p,r=v.r/1200,n=v.n*12;let e=(p*r*Math.pow(1+r,n))/(Math.pow(1+r,n)-1);return`<div class='text-3xl font-bold text-primary'>₹${Math.round(e).toLocaleString('en-IN')}/mo</div>`}, content: `<h2>EMI Calculator</h2><p>Calculate monthly EMI for loans.</p>`},
-            { id: 'fd-calc', category: 'Finance', icon: svgs.fd, title: 'FD Calculator', subtitle: 'Fixed Deposit', inputs: [{id:'p',type:'number',label:'Deposit Amount'},{id:'r',type:'number',label:'Rate %'},{id:'t',type:'number',label:'Years'}], btn: 'Calculate', logic: (v)=>{let m=v.p*Math.pow((1+v.r/400),(4*v.t)); return `<div class='text-3xl font-bold text-primary'>₹${Math.round(m).toLocaleString('en-IN')}</div>`;}, content: `<h2>FD Calculator</h2><p>Bank FD maturity calculator.</p>` },
-            { id: 'discount', category: 'Finance', icon: svgs.discount, title: 'Discount Calc', subtitle: 'Savings', inputs: [{id:'p',type:'number',label:'Price'},{id:'d',type:'number',label:'Discount %'}], btn: 'Calculate', logic: (v)=>{let s=v.p*v.d/100; return `<div>Pay: <strong>₹${v.p-s}</strong></div><div class='text-green-600'>Save: ₹${s}</div>`;}, content: `<h2>Discount Calculator</h2><p>Calculate sale price.</p>` },
+            // FINANCE (8)
+            {id:'sip-calc',category:'Finance',icon:svgs.sip,title:'SIP Calculator',subtitle:'Mutual Fund Returns',inputs:[{id:'i',type:'number',label:'Monthly Inv (₹)'},{id:'r',type:'number',label:'Rate (%)'},{id:'y',type:'number',label:'Years'}],btn:'Calculate',logic:(v)=>{let i=v.i,r=v.r/1200,n=v.y*12;let m=i*((Math.pow(1+r,n)-1)/r)*(1+r);return`<div class='text-3xl font-bold text-primary'>₹${Math.round(m).toLocaleString('en-IN')}</div>`},content:`<h2>SIP Calculator</h2><p>Calculate returns on your SIP investments.</p>`},
+            {id:'gst-calc',category:'Finance',icon:svgs.gst,title:'GST Calculator',subtitle:'Add/Remove Tax',inputs:[{id:'a',type:'number',label:'Amount'},{id:'r',type:'select',label:'Rate',options:[{v:5,t:'5%'},{v:12,t:'12%'},{v:18,t:'18%'},{v:28,t:'28%'}]},{id:'t',type:'select',label:'Type',options:[{v:'add',t:'Add GST'},{v:'sub',t:'Remove GST'}]}],btn:'Calculate',logic:(v)=>{let a=parseFloat(v.a),r=parseFloat(v.r),g,t;if(v.t=='add'){g=a*r/100;t=a+g}else{t=a;a=t*(100/(100+r));g=t-a}return`<div class='grid grid-cols-2 gap-2 text-center'><div><small>GST</small><div class='font-bold'>₹${g.toFixed(2)}</div></div><div><small>Total</small><div class='font-bold text-primary'>₹${t.toFixed(2)}</div></div></div>`},content:`<h2>GST Calculator</h2><p>Calculate GST tax easily.</p>`},
+            {id:'emi-calc',category:'Finance',icon:svgs.emi,title:'Loan EMI Calc',subtitle:'Home/Car Loan',inputs:[{id:'p',type:'number',label:'Loan Amount'},{id:'r',type:'number',label:'Interest Rate'},{id:'n',type:'number',label:'Years'}],btn:'Check EMI',logic:(v)=>{let p=v.p,r=v.r/1200,n=v.n*12;let e=(p*r*Math.pow(1+r,n))/(Math.pow(1+r,n)-1);return`<div class='text-3xl font-bold text-primary'>₹${Math.round(e).toLocaleString('en-IN')}/mo</div>`},content:`<h2>EMI Calculator</h2><p>Calculate Loan EMI.</p>`},
+            {id:'fd-calc',category:'Finance',icon:svgs.fd,title:'FD Calculator',subtitle:'Fixed Deposit',inputs:[{id:'p',type:'number',label:'Deposit Amount'},{id:'r',type:'number',label:'Rate %'},{id:'t',type:'number',label:'Years'}],btn:'Calculate',logic:(v)=>{let m=v.p*Math.pow((1+v.r/400),(4*v.t));return`<div class='text-3xl font-bold text-primary'>₹${Math.round(m).toLocaleString('en-IN')}</div>`},content:`<h2>FD Calculator</h2><p>Check FD Maturity.</p>`},
+            {id:'rd-calc',category:'Finance',icon:svgs.rd,title:'RD Calculator',subtitle:'Recurring Deposit',inputs:[{id:'p',type:'number',label:'Monthly Deposit'},{id:'r',type:'number',label:'Rate %'},{id:'t',type:'number',label:'Years'}],btn:'Calculate',logic:(v)=>{let n=v.t*12,m=v.p*n+v.p*n*(n+1)/2*(v.r/1200);return`<div class='text-3xl font-bold text-primary'>₹${Math.round(m).toLocaleString('en-IN')}</div>`},content:`<h2>RD Calculator</h2><p>Check RD Maturity.</p>`},
+            {id:'discount',category:'Finance',icon:svgs.discount,title:'Discount Calc',subtitle:'Savings',inputs:[{id:'p',type:'number',label:'Original Price'},{id:'d',type:'number',label:'Discount %'}],btn:'Calculate',logic:(v)=>{let s=v.p*v.d/100;return`<div>Pay: <strong>₹${v.p-s}</strong></div><div class='text-green-600'>Save: ₹${s}</div>`},content:`<h2>Discount Calculator</h2><p>Calculate discount.</p>`},
+            {id:'fuel-cost',category:'Finance',icon:svgs.fuel,title:'Fuel Cost Calc',subtitle:'Trip Cost',inputs:[{id:'d',type:'number',label:'Distance (Km)'},{id:'m',type:'number',label:'Mileage (Km/L)'},{id:'p',type:'number',label:'Fuel Price (₹)'}],btn:'Calculate',logic:(v)=>{return`<div class='text-3xl font-bold text-primary'>₹${((v.d/v.m)*v.p).toFixed(2)}</div>`},content:`<h2>Fuel Cost Calculator</h2><p>Estimate trip fuel cost.</p>`},
+            {id:'salary-calc',category:'Finance',icon:svgs.cash,title:'Salary Hourly',subtitle:'Yearly to Hourly',inputs:[{id:'s',type:'number',label:'Annual Package (LPA)'}],btn:'Convert',logic:(v)=>{let m=(v.s*100000)/12, h=m/160;return`<div>Monthly: <strong>₹${Math.round(m)}</strong></div><div>Hourly: <strong>₹${Math.round(h)}</strong></div>`},content:`<h2>Salary Calculator</h2><p>Convert LPA to monthly/hourly.</p>`},
 
-            // IMAGE
-            { id: 'img-compress', category: 'Image', icon: svgs.img, title: 'Image Compressor', subtitle: 'Reduce Size', inputs: [{id:'f',type:'file',label:'Image',accept:'image/*'},{id:'q',type:'select',label:'Quality',options:[{v:0.7,t:'Medium'},{v:0.5,t:'High Compression'}]}], btn:'Compress', asyncLogic: (v) => { if(!v.f) return "Select Image"; return new Promise(r => { const reader = new FileReader(); reader.readAsDataURL(v.f); reader.onload = (e) => { const img = new Image(); img.src = e.target.result; img.onload = () => { const c = document.createElement('canvas'); c.width=img.width; c.height=img.height; const ctx = c.getContext('2d'); ctx.drawImage(img,0,0); const d = c.toDataURL('image/jpeg', parseFloat(v.q)); r(`<a href="${d}" download="compressed.jpg" class="bg-green-600 text-white px-4 py-2 rounded">Download</a>`); }}}); }, content: `<h2>Image Compressor</h2><p>Reduce JPG/PNG size.</p>` },
-            { id: 'img-pdf', category: 'Image', icon: svgs.pdf, title: 'Image to PDF', subtitle: 'Convert to PDF', inputs: [{id:'f',type:'file',label:'Image',accept:'image/*'}], btn:'Convert', asyncLogic: (v) => { if(!v.f) return "Select Image"; const { jsPDF } = window.jspdf; return new Promise(r => { const reader = new FileReader(); reader.readAsDataURL(v.f); reader.onload = (e) => { const pdf = new jsPDF(); const props = pdf.getImageProperties(e.target.result); const w = pdf.internal.pageSize.getWidth(); const h = (props.height * w) / props.width; pdf.addImage(e.target.result, 'JPEG', 0, 0, w, h); r(`<a href="${pdf.output('bloburl')}" target="_blank" class="bg-red-600 text-white px-4 py-2 rounded">Download PDF</a>`); }}); }, content: `<h2>Image to PDF</h2><p>Convert Image to PDF.</p>` },
+            // DEV & UTILITY (12)
+            {id:'qr-gen',category:'Utility',icon:svgs.qr,title:'QR Code Generator',subtitle:'Link to QR',inputs:[{id:'t',type:'text',label:'Enter URL or Text'}],btn:'Generate QR',logic:(v)=>{return`<img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(v.t)}" class="mx-auto border p-2 rounded">`},content:`<h2>QR Generator</h2><p>Create QR codes instantly.</p>`},
+            {id:'text-file',category:'Utility',icon:svgs.pdf,title:'Text to File',subtitle:'Save as .txt',inputs:[{id:'t',type:'textarea',label:'Type Content'},{id:'n',type:'text',label:'Filename (e.g. note)'}],btn:'Download File',logic:(v)=>{let b=new Blob([v.t],{type:"text/plain"});let u=URL.createObjectURL(b);return`<a href="${u}" download="${v.n||'file'}.txt" class="btn-press bg-green-600 text-white px-4 py-2 rounded">Download .txt</a>`},content:`<h2>Text to File</h2><p>Save your notes as a text file.</p>`},
+            {id:'html-view',category:'Developer',icon:svgs.code,title:'HTML Preview',subtitle:'Run HTML Code',inputs:[{id:'c',type:'textarea',label:'Paste HTML Code'}],btn:'Run Code',logic:(v)=>{return`<iframe srcdoc="${v.c.replace(/"/g,"'")}" class="w-full h-40 border rounded bg-white"></iframe>`},content:`<h2>HTML Editor</h2><p>Test HTML/CSS code live.</p>`},
+            {id:'yt-thumb',category:'Utility',icon:svgs.yt,title:'YouTube Thumbnail',subtitle:'Download HD',inputs:[{id:'u',type:'text',label:'Video URL'}],btn:'Get Thumbnail',logic:(v)=>{let id=v.u.split('v=')[1]?.split('&')[0]||v.u.split('/').pop();return`<img src="https://img.youtube.com/vi/${id}/maxresdefault.jpg" class="w-full rounded">`},content:`<h2>Thumbnail Downloader</h2><p>Get HD thumbnails from YouTube.</p>`},
+            {id:'pass-gen',category:'Utility',icon:svgs.pass,title:'Password Gen',subtitle:'Secure Pass',inputs:[{id:'l',type:'number',label:'Length',defaultValue:12}],btn:'Generate',logic:(v)=>{let c="abcABC123!@#",p="";for(let i=0;i<v.l;i++)p+=c.charAt(Math.floor(Math.random()*c.length));return`<div class='bg-gray-100 p-2 font-mono'>${p}</div>`},content:`<h2>Password Generator</h2><p>Make strong passwords.</p>`},
+            {id:'word-count',category:'Utility',icon:svgs.word,title:'Word Counter',subtitle:'Count Words',inputs:[{id:'t',type:'textarea',label:'Text'}],btn:'Count',logic:(v)=>{return`<div class='font-bold'>Words: ${v.t.split(/\s+/).filter(x=>x).length} | Chars: ${v.t.length}</div>`},content:`<h2>Word Counter</h2><p>Count words in text.</p>`},
+            {id:'stopwatch',category:'Utility',icon:svgs.clock,title:'Stopwatch',subtitle:'Timer',inputs:[],btn:'Start/Stop',logic:(v)=>{return`<div class='text-4xl font-mono'>Use Phone Clock</div><div class='text-xs text-gray-400'>(Web version coming soon)</div>`},content:`<h2>Stopwatch</h2><p>Simple timer.</p>`},
+            {id:'lorem',category:'Utility',icon:svgs.word,title:'Lorem Ipsum',subtitle:'Dummy Text',inputs:[],btn:'Generate',logic:(v)=>{return`<div class='text-sm text-gray-600'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>`},content:`<h2>Lorem Ipsum</h2><p>Generate dummy text.</p>`},
+            {id:'rand-num',category:'Utility',icon:svgs.shuffle,title:'Random Number',subtitle:'RNG 1-100',inputs:[{id:'min',type:'number',label:'Min'},{id:'max',type:'number',label:'Max'}],btn:'Generate',logic:(v)=>{return`<div class='text-4xl font-bold text-primary'>${Math.floor(Math.random()*(v.max-v.min+1))+parseInt(v.min)}</div>`},content:`<h2>RNG</h2><p>Generate random numbers.</p>`},
+            {id:'love-calc',category:'Utility',icon:svgs.heart,title:'Love Calculator',subtitle:'Just for Fun',inputs:[{id:'n1',type:'text',label:'Name 1'},{id:'n2',type:'text',label:'Name 2'}],btn:'Calculate',logic:(v)=>{return`<div class='text-3xl font-bold text-pink-500'>${Math.floor(Math.random()*100)}% ❤️</div>`},content:`<h2>Love Calculator</h2><p>Prank love calculator.</p>`},
+            
+            // MATH (6)
+            {id:'age-calc',category:'Math',icon:svgs.age,title:'Age Calculator',subtitle:'Find Age',inputs:[{id:'d',type:'date',label:'DOB'}],btn:'Get Age',logic:(v)=>{let d=new Date(v.d),n=new Date();let y=n.getFullYear()-d.getFullYear();return`<div class='text-3xl font-bold text-primary'>${y} Years</div>`},content:`<h2>Age Calculator</h2><p>Find your exact age.</p>`},
+            {id:'age-diff',category:'Math',icon:svgs.diff,title:'Age Difference',subtitle:'Compare Dates',inputs:[{id:'d1',type:'date',label:'Date 1'},{id:'d2',type:'date',label:'Date 2'}],btn:'Compare',logic:(v)=>{let diff=Math.abs(new Date(v.d1)-new Date(v.d2));return`<div class='text-2xl font-bold'>${Math.ceil(diff/(1000*60*60*24))} Days</div>`},content:`<h2>Date Difference</h2><p>Days between two dates.</p>`},
+            {id:'percent',category:'Math',icon:svgs.discount,title:'Percentage Calc',subtitle:'Marks %',inputs:[{id:'o',type:'number',label:'Obtained'},{id:'t',type:'number',label:'Total'}],btn:'Calculate',logic:(v)=>{return`<div class='text-3xl font-bold text-primary'>${(v.o/v.t*100).toFixed(2)}%</div>`},content:`<h2>Percentage Calculator</h2><p>Calculate Marks %.</p>`},
+            {id:'table-gen',category:'Math',icon:svgs.table,title:'Math Tables',subtitle:'1 to 100',inputs:[{id:'n',type:'number',label:'Number'}],btn:'Show Table',logic:(v)=>{let h='';for(let i=1;i<=10;i++)h+=`<div>${v.n} x ${i} = ${v.n*i}</div>`;return`<div class='font-mono'>${h}</div>`},content:`<h2>Multiplication Table</h2><p>Learn math tables.</p>`},
+            {id:'roman',category:'Math',icon:svgs.word,title:'Roman Numerals',subtitle:'Number to Roman',inputs:[{id:'n',type:'number',label:'Number'}],btn:'Convert',logic:(v)=>{return`<div class='text-2xl font-serif'>Coming Soon</div>`},content:`<h2>Roman Converter</h2><p>Convert numbers.</p>`},
+            {id:'date-add',category:'Math',icon:svgs.age,title:'Date Adder',subtitle:'Add Days',inputs:[{id:'d',type:'date',label:'Start Date'},{id:'n',type:'number',label:'Days to Add'}],btn:'Calculate',logic:(v)=>{let r=new Date(v.d);r.setDate(r.getDate()+parseInt(v.n));return`<div class='text-xl'>${r.toDateString()}</div>`},content:`<h2>Date Calculator</h2><p>Add days to a date.</p>`},
 
-            // MATH
-            { id: 'age-calc', category: 'Math', icon: svgs.age, title: 'Age Calculator', subtitle: 'Find Age', inputs: [{id:'d',type:'date',label:'DOB'}], btn: 'Get Age', logic: (v)=>{let d=new Date(v.d),n=new Date();let y=n.getFullYear()-d.getFullYear();return `<div class='text-3xl font-bold text-primary'>${y} Years</div>`;}, content: `<h2>Age Calculator</h2><p>Calculate your age.</p>` },
-            { id: 'percent', category: 'Math', icon: svgs.discount, title: 'Percentage Calc', subtitle: 'Marks %', inputs: [{id:'o',type:'number',label:'Obtained'},{id:'t',type:'number',label:'Total'}], btn: 'Calculate', logic: (v)=>{return `<div class='text-3xl font-bold text-primary'>${(v.o/v.t*100).toFixed(2)}%</div>`;}, content: `<h2>Percentage Calculator</h2><p>Find percentage of marks.</p>` },
+            // CONVERTERS (8)
+            {id:'area-conv',category:'Converter',icon:svgs.ruler,title:'Area Converter',subtitle:'SqFt to Gaj',inputs:[{id:'v',type:'number',label:'Value'},{id:'u',type:'select',label:'Unit',options:[{v:9,t:'Gaj to SqFt'},{v:0.111,t:'SqFt to Gaj'}]}],btn:'Convert',logic:(v)=>{return`<div class='text-3xl font-bold'>${(v.v*v.u).toFixed(2)}</div>`},content:`<h2>Area Converter</h2><p>Convert Gaj/SqFt.</p>`},
+            {id:'len-conv',category:'Converter',icon:svgs.ruler,title:'Length Converter',subtitle:'Km/Miles',inputs:[{id:'v',type:'number',label:'Val'},{id:'u',type:'select',label:'To',options:[{v:0.62,t:'Km to Miles'},{v:1.6,t:'Miles to Km'}]}],btn:'Convert',logic:(v)=>{return`<div class='text-3xl font-bold'>${(v.v*v.u).toFixed(2)}</div>`},content:`<h2>Length Tool</h2><p>Distance converter.</p>`},
+            {id:'speed-conv',category:'Converter',icon:svgs.speed,title:'Speed Converter',subtitle:'Kmph to Mph',inputs:[{id:'v',type:'number',label:'Speed'},{id:'u',type:'select',label:'To',options:[{v:0.62,t:'Kmph to Mph'},{v:1.6,t:'Mph to Kmph'}]}],btn:'Convert',logic:(v)=>{return`<div class='text-3xl font-bold'>${(v.v*v.u).toFixed(2)}</div>`},content:`<h2>Speed Tool</h2><p>Speed converter.</p>`},
+            {id:'temp-conv',category:'Converter',icon:svgs.water,title:'Temp Converter',subtitle:'C to F',inputs:[{id:'c',type:'number',label:'Celsius'}],btn:'To Fahrenheit',logic:(v)=>{return`<div class='text-3xl font-bold'>${(v.c*9/5+32).toFixed(1)} °F</div>`},content:`<h2>Temp Converter</h2><p>Convert Celsius.</p>`},
+            {id:'bin-conv',category:'Developer',icon:svgs.bin,title:'Binary Converter',subtitle:'Text to 0101',inputs:[{id:'t',type:'text',label:'Text'}],btn:'Convert',logic:(v)=>{return`<div class='break-all font-mono text-xs'>${v.t.split('').map(c=>c.charCodeAt(0).toString(2)).join(' ')}</div>`},content:`<h2>Binary Tool</h2><p>Text to Binary.</p>`},
+            {id:'hex-rgb',category:'Developer',icon:svgs.color,title:'HEX to RGB',subtitle:'Color Code',inputs:[{id:'h',type:'color',label:'Pick Color'}],btn:'Get RGB',logic:(v)=>{return`<div class='text-xl'>${v.h}</div>`},content:`<h2>Color Picker</h2><p>Get HEX codes.</p>`},
+            {id:'slug-gen',category:'Developer',icon:svgs.code,title:'Slug Generator',subtitle:'URL Friendly',inputs:[{id:'t',type:'text',label:'Title'}],btn:'Generate',logic:(v)=>{return`<div class='bg-gray-100 p-2'>${v.t.toLowerCase().replace(/ /g,'-')}</div>`},content:`<h2>Slug Maker</h2><p>SEO friendly URLs.</p>`},
+            {id:'px-rem',category:'Developer',icon:svgs.ruler,title:'Px to REM',subtitle:'CSS Unit',inputs:[{id:'p',type:'number',label:'Pixels'}],btn:'To REM',logic:(v)=>{return`<div class='text-3xl font-bold'>${v.p/16} rem</div>`},content:`<h2>CSS Converter</h2><p>Pixel to REM.</p>`},
 
-            // UTILITY
-            { id: 'pass-gen', category: 'Utility', icon: svgs.pass, title: 'Password Gen', subtitle: 'Secure Pass', inputs: [{id:'l',type:'number',label:'Length',defaultValue:12}], btn:'Generate', logic:(v)=>{let c="abcABC123!@#",p="";for(let i=0;i<v.l;i++)p+=c.charAt(Math.floor(Math.random()*c.length));return `<div class='bg-gray-100 p-2 font-mono'>${p}</div>`;}, content: `<h2>Password Generator</h2><p>Create strong passwords.</p>` },
-            { id: 'bmi-calc', category: 'Health', icon: svgs.bmi, title: 'BMI Calculator', subtitle: 'Body Mass Index', inputs: [{id:'w',type:'number',label:'Weight (kg)'},{id:'h',type:'number',label:'Height (cm)'}], btn: 'Check', logic: (v)=>{let b=(v.w/((v.h/100)**2)).toFixed(1); return `<div class='text-3xl font-bold text-primary'>${b}</div>`;}, content: `<h2>BMI Calculator</h2><p>Check your BMI Score.</p>` },
-            { id: 'word-count', category: 'Utility', icon: svgs.word, title: 'Word Counter', subtitle: 'Count Words', inputs: [{id:'t',type:'textarea',label:'Text'}], btn:'Count', logic:(v)=>{return `<div class='font-bold'>Words: ${v.t.split(/\s+/).filter(x=>x).length}</div>`;}, content:`<h2>Word Counter</h2><p>Count words in text.</p>`}
+            // HEALTH & OTHERS
+            {id:'bmi-calc',category:'Health',icon:svgs.bmi,title:'BMI Calculator',subtitle:'Health Score',inputs:[{id:'w',type:'number',label:'Weight'},{id:'h',type:'number',label:'Height (cm)'}],btn:'Check',logic:(v)=>{let b=(v.w/((v.h/100)**2)).toFixed(1);return`<div class='text-3xl font-bold text-primary'>${b}</div>`},content:`<h2>BMI Calculator</h2><p>Check health.</p>`},
+            {id:'water',category:'Health',icon:svgs.water,title:'Water Intake',subtitle:'Hydration',inputs:[{id:'w',type:'number',label:'Weight'}],btn:'Calculate',logic:(v)=>{return`<div class='text-3xl font-bold text-blue-500'>${(v.w*0.033).toFixed(1)} L</div>`},content:`<h2>Water Calc</h2><p>Daily water need.</p>`},
+            {id:'case-conv',category:'Text',icon:svgs.word,title:'Case Converter',subtitle:'UPPER CASE',inputs:[{id:'t',type:'textarea',label:'Text'}],btn:'Uppercase',logic:(v)=>{return`<div class='bg-gray-100 p-2'>${v.t.toUpperCase()}</div>`},content:`<h2>Case Converter</h2><p>Text to Uppercase.</p>`},
+            {id:'img-compress',category:'Image',icon:svgs.img,title:'Image Compressor',subtitle:'Reduce Size',inputs:[{id:'f',type:'file',label:'Image',accept:'image/*'}],btn:'Compress',asyncLogic:(v)=>{if(!v.f)return"Select Image";return new Promise(r=>{const reader=new FileReader();reader.readAsDataURL(v.f);reader.onload=e=>{const img=new Image();img.src=e.target.result;img.onload=()=>{const c=document.createElement('canvas');c.width=img.width;c.height=img.height;const ctx=c.getContext('2d');ctx.drawImage(img,0,0);const d=c.toDataURL('image/jpeg',0.7);r(`<a href="${d}" download="compressed.jpg" class="bg-green-600 text-white px-4 py-2 rounded">Download</a>`)}}})},content:`<h2>Image Compressor</h2><p>Reduce image size.</p>`}
         ];
 
-        // --- STATIC PAGES DATA (Content in English) ---
-        const staticPages = {
-            about: {
-                title: "About TaskNero",
-                content: `
-                    <h2>Who We Are</h2>
-                    <p>TaskNero is a next-generation digital utility platform designed to make daily online tasks simpler, faster, and more secure. We believe that simple calculations and conversions shouldn't require heavy apps or complex software.</p>
-                    <h2>Our Mission</h2>
-                    <p>Our mission is to provide a suite of high-quality, free-to-use tools that are accessible to everyone, everywhere. Whether you are a student calculating grades, a professional computing GST, or a freelancer compressing images, TaskNero is here to help.</p>
-                    <h2>Why TaskNero?</h2>
-                    <ul>
-                        <li><strong>Zero Cost:</strong> All our tools are 100% free forever.</li>
-                        <li><strong>Privacy Focused:</strong> We process data locally in your browser. No personal data is stored on our servers.</li>
-                        <li><strong>Speed:</strong> Optimized for performance on both mobile and desktop devices.</li>
-                    </ul>
-                `
-            },
-            privacy: {
-                title: "Privacy Policy",
-                content: `
-                    <p><strong>Last Updated: 2025</strong></p>
-                    <p>At TaskNero, accessible from tasknero.com, the privacy of our visitors is of extreme importance to us. This Privacy Policy document outlines the types of information that is collected and recorded by TaskNero and how we use it.</p>
-                    
-                    <h3>1. Information Collection</h3>
-                    <p>We do not collect any personal identifiable information (PII) like names, emails, or phone numbers. Our tools (Calculators, Converters) run client-side using JavaScript, meaning your data never leaves your device.</p>
-                    
-                    <h3>2. Cookies</h3>
-                    <p>TaskNero uses "cookies" to store information about visitors' preferences and to optimize the user experience. Third-party vendors, including Google, use cookies to serve ads based on a user's prior visits.</p>
-                    
-                    <h3>3. Third-Party Links</h3>
-                    <p>Our website may contain links to other websites. We are not responsible for the privacy policies or content of these third-party sites.</p>
-                    
-                    <h3>4. Consent</h3>
-                    <p>By using our website, you hereby consent to our Privacy Policy and agree to its terms.</p>
-                `
-            },
-            terms: {
-                title: "Terms and Conditions",
-                content: `
-                    <p>Welcome to TaskNero!</p>
-                    <p>These terms and conditions outline the rules and regulations for the use of TaskNero's Website.</p>
-                    
-                    <h3>1. Acceptance of Terms</h3>
-                    <p>By accessing this website we assume you accept these terms and conditions. Do not continue to use TaskNero if you do not agree to take all of the terms and conditions stated on this page.</p>
-                    
-                    <h3>2. License</h3>
-                    <p>Unless otherwise stated, TaskNero and/or its licensors own the intellectual property rights for all material on TaskNero. All intellectual property rights are reserved.</p>
-                    
-                    <h3>3. User Responsibilities</h3>
-                    <p>You agree to use our tools only for lawful purposes. You must not use our website to distribute malicious software or engage in data mining.</p>
-                `
-            },
-            disclaimer: {
-                title: "Disclaimer",
-                content: `
-                    <p>The information provided by TaskNero ("we," "us," or "our") on this website is for general informational purposes only.</p>
-                    
-                    <h3>1. Accuracy of Tools</h3>
-                    <p>While we strive to keep our calculators and tools accurate, we make no representation or warranty of any kind, express or implied, regarding the accuracy, adequacy, validity, reliability, or completeness of any information or calculation result on the site.</p>
-                    
-                    <h3>2. Financial Disclaimer</h3>
-                    <p>Tools like SIP Calculator, GST Calculator, and EMI Calculator are for estimation purposes only. They should not be considered as professional financial advice. Please consult a certified financial advisor before making investment decisions.</p>
-                `
-            },
-            contact: {
-                title: "Contact Us",
-                content: `
-                    <p>We value your feedback and suggestions. If you have any questions about our tools, need support, or want to report a bug, please reach out to us.</p>
-                    
-                    <div class="bg-blue-50 border border-blue-100 p-6 rounded-xl my-6 text-center">
-                        <h3 class="text-lg font-bold text-gray-900">Email Support</h3>
-                        <p class="text-gray-600 mb-2">For general inquiries and support:</p>
-                        <a href="mailto:contact@tasknero.com" class="text-xl font-bold text-primary hover:underline">contact@tasknero.com</a>
-                    </div>
-                `
-            }
-        };
+        const staticPages={about:{title:"About TaskNero",content:`<h2>About Us</h2><p>TaskNero provides free, fast, and secure tools for Indians.</p>`},privacy:{title:"Privacy Policy",content:`<p>We do not save your data.</p>`},contact:{title:"Contact Us",content:`<p>Email: contact@tasknero.com</p>`}, terms:{title:"Terms",content:"<p>Use responsibly.</p>"}, disclaimer:{title:"Disclaimer",content:"<p>Calculators are for estimation.</p>"}};
 
-        // --- CORE ENGINE ---
         const app = document.getElementById('app-container');
 
+        // --- SEARCH FUNCTION ---
+        function searchTools() {
+            const query = document.getElementById('searchInput').value.toLowerCase();
+            const cards = document.querySelectorAll('.tool-card-container');
+            cards.forEach(card => {
+                const title = card.getAttribute('data-title').toLowerCase();
+                const tags = card.getAttribute('data-tags').toLowerCase();
+                if(title.includes(query) || tags.includes(query)) card.style.display = 'block';
+                else card.style.display = 'none';
+            });
+        }
+
+        // --- RENDER HOME ---
         function renderHome(filter='All') {
             window.scrollTo({top:0});
             document.title = "TaskNero - 50+ Free Online Tools";
             let cats = [...new Set(toolsDB.map(t=>t.category))];
             
-            let html = `<div class='text-center mb-8 animate-fade-in'>
-                <h1 class='text-3xl font-bold text-gray-900 mb-2 font-sans'>TaskNero</h1>
-                <p class='text-gray-500'>Fast, Free & Secure Tools for Daily Use</p>
+            let html = `
+                <div class='text-center mb-6 animate-fade-in'>
+                    <h1 class='text-3xl font-bold text-gray-900 mb-2 font-sans'>TaskNero</h1>
+                    <p class='text-gray-500'>Fast, Free & Secure Tools for Daily Use</p>
                 </div>
-                
+                <div class="search-container animate-fade-in mb-6 relative max-w-lg mx-auto">
+                    <i data-lucide="search" class="search-icon w-5 h-5 absolute left-3 top-3 text-gray-400"></i>
+                    <input type="text" id="searchInput" onkeyup="searchTools()" placeholder="Search tools..." class="tool-input pl-10 rounded-full">
+                </div>
                 <div class='flex gap-2 overflow-x-auto hide-scroll pb-4 mb-4 justify-start sm:justify-center px-1'>
                     <button onclick="renderHome('All')" class='${filter=='All'?'active-pill':'inactive-pill'} px-4 py-2 rounded-full text-xs font-bold transition whitespace-nowrap'>All</button>
                     ${cats.map(c=>`<button onclick="renderHome('${c}')" class='${c==filter?'active-pill':'inactive-pill'} px-4 py-2 rounded-full text-xs font-bold transition whitespace-nowrap'>${c}</button>`).join('')}
                 </div>
-                
-                <div class='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3'>`;
-            
+                <div class='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3' id="toolsGrid">`;
             toolsDB.filter(t=>filter=='All'||t.category==filter).forEach(t=>{
-                html += `<div onclick="openTool('${t.id}')" class='bg-white p-4 rounded-xl border border-gray-100 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all cursor-pointer flex items-center gap-4 group'>
+                html += `<div onclick="openTool('${t.id}')" class='tool-card-container bg-white p-4 rounded-xl border border-gray-100 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all cursor-pointer flex items-center gap-4 group' data-title="${t.title}" data-tags="${t.category} ${t.subtitle}">
                     <div class='p-3 bg-blue-50 rounded-lg text-primary group-hover:bg-primary group-hover:text-white transition'><i data-lucide="${t.icon}"></i></div>
                     <div><h3 class='font-bold text-gray-800 text-sm'>${t.title}</h3><p class='text-[10px] text-gray-500'>${t.subtitle}</p></div>
                 </div>`;
@@ -225,51 +178,31 @@
             lucide.createIcons();
         }
 
+        // --- RENDER TOOL ---
         function renderTool(id) {
             window.scrollTo({top:0});
             const t = toolsDB.find(x=>x.id===id);
             if(!t) return renderHome();
-            
             document.title = `${t.title} - TaskNero`;
-            document.querySelector('meta[name="description"]').setAttribute('content', `Use ${t.title} online. ${t.subtitle}`);
-
             let inputs = t.inputs.map(i=> {
-                if(i.type==='select') return `<div class="mb-3"><label class="text-xs font-bold text-gray-600 block mb-1">${i.label}</label><select id="${t.id}_${i.id}" class="tool-input bg-white">${i.options.map(o=>`<option value="${o.v}">${o.t}</option>`).join('')}</select></div>`;
-                if(i.type==='file') return `<div class="mb-3"><label class="text-xs font-bold text-gray-600 block mb-1">${i.label}</label><input type="file" id="${t.id}_${i.id}" accept="${i.accept}" class="tool-input bg-white p-2"></div>`;
-                if(i.type==='textarea') return `<div class="mb-3"><label class="text-xs font-bold text-gray-600 block mb-1">${i.label}</label><textarea id="${t.id}_${i.id}" class="tool-input" rows="4"></textarea></div>`;
-                return `<div class="mb-3"><label class="text-xs font-bold text-gray-600 block mb-1">${i.label}</label><input type="${i.type}" id="${t.id}_${i.id}" class="tool-input" placeholder="..." value="${i.defaultValue||''}"></div>`;
+                const uid = `${t.id}_${i.id}`;
+                if(i.type==='select') return `<div class="mb-3"><label class="text-xs font-bold text-gray-600 block mb-1">${i.label}</label><select id="${uid}" class="tool-input bg-white">${i.options.map(o=>`<option value="${o.v}">${o.t}</option>`).join('')}</select></div>`;
+                if(i.type==='file') return `<div class="mb-3"><label class="text-xs font-bold text-gray-600 block mb-1">${i.label}</label><input type="file" id="${uid}" accept="${i.accept}" class="tool-input bg-white p-2"></div>`;
+                if(i.type==='textarea') return `<div class="mb-3"><label class="text-xs font-bold text-gray-600 block mb-1">${i.label}</label><textarea id="${uid}" class="tool-input" rows="4"></textarea></div>`;
+                if(i.type==='color') return `<div class="mb-3"><label class="text-xs font-bold text-gray-600 block mb-1">${i.label}</label><input type="color" id="${uid}" class="h-10 w-full"></div>`;
+                return `<div class="mb-3"><label class="text-xs font-bold text-gray-600 block mb-1">${i.label}</label><input type="${i.type}" id="${uid}" class="tool-input" placeholder="..." value="${i.defaultValue||''}"></div>`;
             }).join('');
 
-            app.innerHTML = `
-                <button onclick="handleNav(event, 'home')" class="mb-4 flex items-center gap-1 text-xs text-gray-500 hover:text-primary font-bold"><i data-lucide="arrow-left" class="w-3 h-3"></i> HOME</button>
-                <div class="max-w-md mx-auto bg-white rounded-xl shadow-lg border border-gray-100 p-6 animate-fade-in">
-                    <div class="text-center mb-6"><div class="inline-block p-3 bg-blue-50 rounded-full text-primary mb-2"><i data-lucide="${t.icon}" class="w-8 h-8"></i></div><h1 class="text-2xl font-bold text-gray-900">${t.title}</h1><p class="text-xs text-gray-500">${t.subtitle}</p></div>
-                    ${inputs}
-                    <button onclick="calc('${t.id}')" class="w-full bg-primary hover:bg-primaryDark text-white font-bold py-3.5 rounded-lg shadow-lg mt-4 transition btn-press">${t.btn}</button>
-                    <div id="res" class="hidden mt-6 pt-6 border-t border-dashed border-gray-200 text-center"></div>
-                </div>
-                <div class="mt-8 p-6 bg-white rounded-lg border border-gray-100 seo-content text-sm">${t.content}</div>
-                <div class="ad-slot mt-8">Ad Space</div>
-            `;
+            app.innerHTML = `<button onclick="handleNav(event, 'home')" class="mb-4 flex items-center gap-1 text-xs text-gray-500 hover:text-primary font-bold"><i data-lucide="arrow-left" class="w-3 h-3"></i> HOME</button><div class="max-w-md mx-auto bg-white rounded-xl shadow-lg border border-gray-100 p-6 animate-fade-in"><div class="text-center mb-6"><div class="inline-block p-3 bg-blue-50 rounded-full text-primary mb-2"><i data-lucide="${t.icon}" class="w-8 h-8"></i></div><h1 class="text-2xl font-bold text-gray-900">${t.title}</h1><p class="text-xs text-gray-500">${t.subtitle}</p></div>${inputs}<button onclick="calc('${t.id}')" class="w-full bg-primary hover:bg-primaryDark text-white font-bold py-3.5 rounded-lg shadow-lg mt-4 transition btn-press">${t.btn}</button><div id="res" class="hidden mt-6 pt-6 border-t border-dashed border-gray-200 text-center"></div></div><div class="mt-8 p-6 bg-white rounded-lg border border-gray-100 seo-content text-sm">${t.content}</div><div class="ad-slot mt-8">Ad Space</div>`;
             lucide.createIcons();
         }
 
         function renderStaticPage(pageId) {
             window.scrollTo({top:0});
-            const pageData = staticPages[pageId];
-            if(!pageData) return renderHome();
-            
-            document.title = `${pageData.title} - TaskNero`;
-            
-            app.innerHTML = `
-                <button onclick="handleNav(event, 'home')" class="mb-6 flex items-center gap-1 text-xs text-gray-500 hover:text-primary font-bold hover:-translate-x-1 transition"><i data-lucide="arrow-left" class="w-3 h-3"></i> HOME</button>
-                <div class="bg-white rounded-xl shadow-lg border border-gray-100 p-8 max-w-2xl mx-auto animate-fade-in">
-                    <h1 class="text-3xl font-bold text-gray-900 mb-6 font-display border-b pb-4">${pageData.title}</h1>
-                    <div class="prose prose-blue max-w-none text-sm text-gray-600 leading-relaxed">
-                        ${pageData.content}
-                    </div>
-                </div>
-            `;
+            const d = staticPages[pageId];
+            if(!d) return renderHome();
+            document.title = `${d.title} - TaskNero`;
+            app.innerHTML = `<button onclick="handleNav(event, 'home')" class="mb-6 flex items-center gap-1 text-xs text-gray-500 hover:text-primary font-bold"><i data-lucide="arrow-left" class="w-3 h-3"></i> HOME</button><div class="bg-white rounded-xl shadow-lg border border-gray-100 p-8 max-w-2xl mx-auto animate-fade-in"><h1 class="text-3xl font-bold text-gray-900 mb-6 font-display border-b pb-4">${d.title}</h1><div class="prose prose-blue max-w-none text-sm text-gray-600 leading-relaxed">${d.content}</div></div>`;
             lucide.createIcons();
         }
 
@@ -277,22 +210,18 @@
             try {
                 const t = toolsDB.find(x=>x.id===id);
                 const v = {};
-                t.inputs.forEach(i => {
-                    const el = document.getElementById(`${t.id}_${i.id}`);
-                    v[i.id] = i.type==='file' ? el.files[0] : el.value;
-                });
-                const rBox = document.getElementById('res');
-                rBox.innerHTML = '<span class="text-gray-400 animate-pulse">Processing...</span>';
-                rBox.classList.remove('hidden');
+                t.inputs.forEach(i => { const el = document.getElementById(`${t.id}_${i.id}`); v[i.id] = i.type==='file' ? el.files[0] : el.value; });
+                const rBox = document.getElementById('res'); rBox.innerHTML = '<span class="text-gray-400 animate-pulse">Processing...</span>'; rBox.classList.remove('hidden');
                 await new Promise(r => setTimeout(r, 100));
-                if(t.asyncLogic) { rBox.innerHTML = await t.asyncLogic(v); } 
-                else { rBox.innerHTML = t.logic(v); }
+                if(t.asyncLogic) rBox.innerHTML = await t.asyncLogic(v);
+                else rBox.innerHTML = t.logic(v);
             } catch(e) { alert("Error: Please check inputs."); }
         }
 
         function handleNav(e,d){ if(e)e.preventDefault(); if(d=='home')openTool(null); else openTool(null); }
         function openTool(id){ if(id) { history.pushState({t:id},'',`?tool=${id}`); renderTool(id); } else { history.pushState({},'',`/`); renderHome(); } }
         function openPage(p){ if(p){ history.pushState({p:p},'',`?page=${p}`); renderStaticPage(p); } }
+        window.onscroll = function() { document.getElementById("topBtn").style.display = (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) ? "block" : "none"; };
 
         document.addEventListener('DOMContentLoaded', () => {
             const p = new URLSearchParams(window.location.search);
